@@ -14,7 +14,7 @@ This repository is a personal task queue system. Ideas and tasks live as markdow
 | `in-progress/` | Item currently being worked on. Should have 0 or 1 file. |
 | `done/` | Completed items. Never delete these — they are the audit trail. |
 | `templates/` | Canonical templates for items and reports. Read-only reference. |
-| `.claude/skills/` | Skills for this system (prefixed `todo-`). |
+| `.agents/skills/` | Generic Agent Skills for this system (prefixed `todo-`). |
 
 **Never delete files. Only move them between directories.**
 
@@ -60,6 +60,7 @@ When processing is complete, the processor appends:
 |-------|---------|---------|
 | `todo-intake` | `/todo-intake` | Capture a new idea into inbox |
 | `todo-process` | `/todo-process [N]` | Process next N items (default: 1) |
+| `todo-search` | `/todo-search <query>` | Search recent inbox items, claim the best match, and start or hand off immediate work |
 | `todo-report` | `/todo-report` | Show queue status and recent completions |
 
 ## Processing Rules
