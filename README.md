@@ -2,6 +2,28 @@
 
 A minimal personal task queue powered by Claude Code. Ideas live as markdown files; a scheduled agent processes them one at a time while you're away.
 
+## Getting Started
+
+**Project-local** (skills available only inside this repo directory):
+
+Clone the repo — skills in `.claude/skills/` are picked up automatically by Claude Code.
+
+**Global install** (skills available from any directory):
+
+```sh
+git clone https://github.com/olala7846/todo-list
+cd todo-list
+./install.sh
+```
+
+The installer embeds the absolute repo path into the copied skill files so `/todo-intake`, `/todo-process`, and `/todo-report` always operate on the correct `inbox/`, `in-progress/`, and `done/` directories regardless of where you open Claude Code. Restart Claude Code after installing.
+
+To reinstall after a `git pull` (picks up skill changes):
+
+```sh
+./install.sh
+```
+
 ## How it works
 
 ```
