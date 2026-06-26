@@ -14,7 +14,8 @@ This repository is a personal task queue system. Ideas and tasks live as markdow
 | `in-progress/` | Item currently being worked on. Should have 0 or 1 file. |
 | `done/` | Completed items. Never delete these — they are the audit trail. |
 | `templates/` | Canonical templates for items and reports. Read-only reference. |
-| `.agents/skills/` | Generic Agent Skills for this system (prefixed `todo-`). |
+| `.agents/skills/` | Generic Agent Skills for this system (prefixed `todo-`). **Source of truth for all skills.** |
+| `.claude/skills/` | Symlinks only — each entry points to the corresponding `.agents/skills/*/SKILL.md`. Do not add skill files here directly. |
 
 **Never delete files. Only move them between directories.**
 
@@ -62,6 +63,19 @@ When processing is complete, the processor appends:
 | `todo-process` | `/todo-process [N]` | Process next N items (default: 1) |
 | `todo-search` | `/todo-search <query>` | Search recent inbox items, claim the best match, and start or hand off immediate work |
 | `todo-report` | `/todo-report` | Show queue status and recent completions |
+
+## Adding New Skills
+
+New skills must be created under `.agents/skills/<skill-name>/SKILL.md` — one directory per skill, following the [Agent Skills](https://agentskills.io) open standard. After adding a skill:
+
+1. Add a symlink in `.claude/skills/` pointing to the new `SKILL.md`:
+   ```sh
+   ln -s "../../.agents/skills/<skill-name>/SKILL.md" ".claude/skills/<skill-name>.md"
+   ```
+2. Add the skill name to the `SKILLS` array in `install.sh`.
+3. Commit both the new skill directory and the symlink.
+
+Never put skill content directly in `.claude/skills/` — it is a compatibility shim for Claude Code, not the source of truth.
 
 ## Processing Rules
 
